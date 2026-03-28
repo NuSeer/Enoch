@@ -7,14 +7,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --gold:#c9a84c;--gold-light:#e8d08a;--gold-dim:#7a5f28;
-  --bg:#060d16;--surface:rgba(26,18,8,0.9);--surface2:rgba(10,8,6,0.95);
-  --text:#f2e8d0;--dim:#9d8e70;--border:rgba(201,168,76,0.25);
+  --gold:#c9a84c;--gold-light:#e8d08a;--gold-dim:#9a7f3e;
+  --bg:#111820;--surface:rgba(30,24,14,0.92);--surface2:rgba(18,14,8,0.96);
+  --text:#ede0c4;--dim:#b0a080;--border:rgba(201,168,76,0.28);
   --sage:#4a7c59;--ember:#c44a1a;--violet:#6b3a9e;
 }
 body.light{
-  --bg:#f0e8d4;--surface:rgba(255,250,240,0.95);--surface2:#faf4e4;
-  --text:#1a1208;--dim:#5a4a30;--border:rgba(120,90,40,0.3);
+  --bg:#e8dcc8;--surface:#f5edd8;--surface2:#ede0c4;
+  --text:#1e1408;--dim:#4a3820;--border:rgba(100,75,30,0.35);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'EB Garamond',serif;font-size:16px;min-height:100vh;overflow-x:hidden;transition:background .3s,color .3s;}
@@ -53,7 +53,7 @@ body.light #sResults{background:#f0e8d4;}
 .sri-hl{background:rgba(201,168,76,0.25);color:var(--gold-light);border-radius:2px;padding:0 2px;}
 
 /* NAV */
-nav{display:flex;padding:0 16px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;background:rgba(6,13,22,0.92);backdrop-filter:blur(8px);position:sticky;top:108px;z-index:99;gap:0;}
+nav{display:flex;padding:0 16px;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;background:rgba(6,13,22,0.92);backdrop-filter:blur(8px);position:sticky;top:0;z-index:99;gap:0;}
 body.light nav{background:rgba(235,225,205,0.97);}
 nav::-webkit-scrollbar{display:none;}
 .home-btn{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:13px 16px;cursor:pointer;border:none;border-bottom:2px solid var(--gold-dim);border-right:1px solid var(--border);background:rgba(201,168,76,0.06);flex-shrink:0;transition:all .2s;}
@@ -139,7 +139,8 @@ body.light .flip-foot{background:rgba(225,215,192,0.9);}
 .vn{font-family:'Cinzel',serif;font-size:10px;color:var(--gold-dim);margin-right:7px;letter-spacing:1px;user-select:none;}
 .vt{font-size:16px;color:var(--text);}
 .sum-p{font-size:16px;color:var(--text);line-height:1.85;margin-bottom:16px;}
-.hl{background:rgba(255,230,50,0.35);border-radius:2px;padding:0 1px;}
+.hl{background:#f5d020;border-radius:2px;padding:0 2px;color:#1a1000 !important;}
+.hl *{color:#1a1000 !important;}
 .ul{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;}
 .ch-foot{margin-top:32px;padding-top:16px;border-top:1px solid rgba(201,168,76,0.1);display:flex;justify-content:space-between;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;color:var(--gold-dim);}
 
@@ -344,12 +345,166 @@ body.light .np-ssel option{background:#f0e8d4;}
 .toast{position:fixed;bottom:28px;right:28px;background:linear-gradient(135deg,var(--gold-dim),var(--gold));color:#060d16;font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;padding:11px 22px;border-radius:4px;z-index:999;transform:translateY(70px);opacity:0;transition:all .3s ease;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
 
-/* MISC */
-::-webkit-scrollbar{width:4px;height:4px;}
+/* ── TERM LINKS ── */
+.term-link{color:var(--gold);text-decoration:none;border-bottom:1px dotted rgba(201,168,76,0.5);cursor:pointer;transition:all .15s;}
+.term-link:hover{color:var(--gold-light);border-bottom-color:var(--gold);}
+
+/* ── LORE READ BUTTON ── */
+.sc-btn{margin-top:14px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:none;border:1px solid rgba(201,168,76,0.3);padding:8px 16px;border-radius:3px;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px;}
+.sc-btn:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px;}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
 .sec.active>*{animation:fadeIn .3s ease forwards;}
+
+/* ════════════════════════════════════════
+   MOBILE — 480px and below
+════════════════════════════════════════ */
+@media(max-width:480px){
+  /* Header */
+  header{padding:16px 14px 12px;}
+  .hdr-emblem{font-size:16px;letter-spacing:5px;margin-bottom:2px;}
+  h1{font-size:18px;letter-spacing:2px;}
+  .hdr-sub{font-size:9px;letter-spacing:3px;}
+  .search-wrap{padding:0 12px;margin-top:10px;}
+  #gSearch{font-size:14px;padding:9px 36px 9px 34px;}
+
+  /* Nav — becomes horizontal scroll strip */
+  nav{top:88px;padding:0 4px;}
+  .home-btn{padding:11px 12px;font-size:9px;letter-spacing:1px;}
+  .ntab{padding:11px 10px;font-size:9px;letter-spacing:1px;}
+  .theme-btn{padding:11px 10px;font-size:9px;}
+
+  /* Main */
+  main{padding:18px 12px 60px;}
+  .sec-title{font-size:16px;letter-spacing:2px;}
+  .sec-intro{font-size:14px;margin-bottom:20px;}
+
+  /* Book cards — single column */
+  .books-grid{grid-template-columns:1fr;gap:12px;}
+  .bk{padding:16px;}
+  .bk-title{font-size:15px;}
+
+  /* Reader modal — full screen on mobile */
+  .r-panel{width:100vw;height:100dvh;max-width:100vw;border-radius:0;margin:0;}
+  .r-hdr{padding:12px 14px 10px;}
+  .r-label{font-size:8px;}
+  .r-title{font-size:13px;}
+  .r-close{width:34px;height:34px;font-size:18px;}
+
+  /* Reader toolbar — compact wrap */
+  .r-toolbar{padding:6px 10px;gap:8px;}
+  .tb-lbl{display:none;}
+  .tb-btn{font-size:10px;padding:6px 8px;letter-spacing:0;}
+
+  /* Chapter nav */
+  .ch-nav{padding:0 6px;}
+  .ch-sec-lbl{display:none;}
+  .ch-btn{font-size:9px;padding:9px 8px;}
+
+  /* Reader content */
+  .r-scroll{padding:18px 16px;}
+  .flip-body{padding:18px 16px;}
+  .ch-head{font-size:16px;}
+  .ch-sub{font-size:12px;margin-bottom:14px;}
+  .vt{font-size:15px;}
+  .sum-p{font-size:15px;}
+  .flip-foot{padding:10px 12px;}
+  .flip-btn{font-size:9px;padding:6px 12px;letter-spacing:1px;}
+  .flip-ind{font-size:9px;}
+
+  /* Angels — single column */
+  .ang-grid{grid-template-columns:1fr;}
+
+  /* Fallen — single column */
+  .fallen-grid{grid-template-columns:1fr;}
+
+  /* Calendar */
+  .cal-main{grid-template-columns:1fr;}
+  .cal-hdr{flex-direction:column;align-items:flex-start;gap:10px;}
+  .stab{padding:5px 8px;font-size:8px;}
+  .cal-grid-area{padding:12px;}
+  .day{min-height:28px;}
+  .day-n{font-size:10px;}
+  .day-lbl{font-size:6px;}
+
+  /* Luminaries */
+  .lum-layout{grid-template-columns:1fr;}
+  .lum-card{padding:16px;}
+  .gate-lbl{width:52px;font-size:8px;}
+  .lum-table th,.lum-table td{font-size:11px;padding:5px;}
+
+  /* Concordance */
+  .conc-bar{flex-direction:column;gap:8px;}
+  .conc-in{max-width:100%;}
+  .conc-grid{grid-template-columns:1fr;}
+
+  /* Secrets */
+  .sec-grid{grid-template-columns:1fr;}
+  .sc{padding:16px;}
+
+  /* Notes */
+  .notes-lay{grid-template-columns:1fr;}
+  .note-row{flex-direction:column;gap:8px;}
+  .note-sel{width:100%;}
+  .notes-panel{max-height:400px;}
+  .ni-acts{opacity:1;}
+
+  /* Popups */
+  .def-overlay{padding:12px;}
+  .def-box{padding:20px 18px;max-width:100%;}
+  .def-word{font-size:17px;}
+  .def-orig{font-size:18px;}
+  .def-body{font-size:14px;}
+
+  /* Toast */
+  .toast{bottom:16px;right:12px;left:12px;text-align:center;font-size:10px;padding:10px 16px;}
+}
+
+/* ════════════════════════════════════════
+   TABLET — 481px to 768px
+════════════════════════════════════════ */
+@media(min-width:481px) and (max-width:768px){
+  header{padding:20px 20px 14px;}
+  h1{font-size:22px;}
+  nav{top:100px;padding:0 8px;}
+  .ntab{padding:12px 12px;font-size:9px;letter-spacing:1px;}
+  .home-btn{padding:12px 12px;font-size:9px;}
+  main{padding:22px 16px 70px;}
+
+  /* Reader — near full screen */
+  .r-panel{width:100vw;height:100dvh;max-width:100vw;border-radius:0;margin:0;}
+  .r-scroll{padding:22px 24px;}
+  .flip-body{padding:22px 24px;}
+
+  /* Toolbar compact */
+  .tb-lbl{font-size:8px;}
+  .tb-btn{font-size:9px;padding:5px 9px;}
+
+  /* Grids — 2 col */
+  .books-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+  .ang-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
+  .fallen-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));}
+  .sec-grid{grid-template-columns:repeat(auto-fill,minmax(240px,1fr));}
+  .conc-grid{grid-template-columns:1fr;}
+
+  /* Calendar */
+  .cal-main{grid-template-columns:1fr;}
+  .notes-lay{grid-template-columns:1fr;}
+  .lum-layout{grid-template-columns:1fr;}
+
+  /* Notes — show delete/edit buttons always on touch */
+  .ni-acts{opacity:1;}
+}
+
+/* Touch devices — always show note actions */
+@media(hover:none){
+  .ni-acts{opacity:1;}
+  .bk:hover{transform:none;}
+  .ang:hover{transform:none;}
+  .cc:hover{transform:none;}
+  .sc:hover{transform:none;}
+}
 </style>
 </head>
 <body>
@@ -566,6 +721,14 @@ body.light .np-ssel option{background:#f0e8d4;}
   </div>
 </div>
 
+<!-- LORE MODAL -->
+<div class="def-overlay" id="loreOverlay" style="display:none">
+  <div class="def-box" style="max-width:680px;max-height:85vh;overflow-y:auto">
+    <button class="def-x" id="loreClose">✕</button>
+    <div id="loreContent"></div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
 
@@ -584,8 +747,16 @@ body.light .np-ssel option{background:#f0e8d4;}
 })();
 
 // ═══════════════════════════════════════════
-// THEME
+// DYNAMIC NAV OFFSET — tracks header height on resize
 // ═══════════════════════════════════════════
+function updateNavTop(){
+  const h=document.querySelector('header');
+  const n=document.querySelector('nav');
+  if(h&&n) n.style.top=h.offsetHeight+'px';
+}
+// Run after fonts/layout settle
+setTimeout(updateNavTop,100);
+window.addEventListener('resize',updateNavTop);
 const themeBtn=document.getElementById('themeBtn');
 let darkMode=true;
 themeBtn.addEventListener('click',()=>{
@@ -968,18 +1139,18 @@ const CONC=[
 // SECRETS DATA
 // ═══════════════════════════════════════════
 const SECRETS=[
-  {i:'📖',t:'The Book of Giants',b:'Found among the Dead Sea Scrolls (4Q530-533), the Book of Giants tells of the Nephilim — the giant offspring of the Watchers. The giants Ohya and Hahya have terrifying dreams foretelling their destruction. Józef Milik proposed it originally replaced the Parables in 1 Enoch.'},
-  {i:'📜',t:'Dead Sea Scrolls Connection',b:'Eleven caves at Qumran yielded fragments of 1 Enoch (1Q23, 4Q201–212). The Qumran community used the Enochian 364-day solar calendar. Texts like 4Q320–330 encode festival timings in the Enochic system, often in cryptic scripts.'},
-  {i:'🌍',t:'The Ethiopian Orthodox Canon',b:'<strong>Ethiopia</strong> is the only nation whose Orthodox church includes all three Enoch books in its biblical canon. The Ge\'ez text (Maṣḥafa Hēnok) survived the Middle Ages when it was lost everywhere else. Scottish explorer James Bruce brought three Ethiopic copies to Europe in 1773.'},
-  {i:'⚖️',t:'Why Enoch Was Banned',b:'The Church Father Filastrius explicitly condemned the Book of Enoch as heresy. Rabbi Simeon ben Jochai pronounced a curse on believers. Its detailed account of fallen angels and Nephilim threatened orthodox theology — yet over <strong>100 New Testament phrases</strong> echo Enoch.'},
-  {i:'👁️',t:'Metatron & Jewish Mysticism',b:'3 Enoch places Metatron — Enoch transformed — as the "Lesser YHWH," sitting on a throne beside God. The Talmud records the heretic Elisha ben Abuya saw Metatron and declared "there are two powers in heaven." This fed directly into Kabbalistic angelology.'},
-  {i:'🌠',t:'The Luminaries System (Ch. 72–82)',b:'The Astronomical Book presents a complete celestial theology: the sun rises through six eastern portals and sets through six western portals. The moon waxes and wanes over 29–30 days. Four angelic leaders oversee the four seasonal segments, with Uriel as chief overseer.'},
+  {i:'📖',t:'The Book of Giants',b:'Found among the Dead Sea Scrolls (4Q530-533), this text tells of the Nephilim — Ohya and Hahya — who dream of their own destruction and send Mahaway to find Enoch in heaven. The giants receive tablets of judgment. Click to read the full account.'},
+  {i:'📜',t:'Dead Sea Scrolls Connection',b:'Eleven caves at Qumran yielded Enoch fragments in Aramaic (1Q23, 4Q201–212), confirming its ancient origins. The Qumran community used the Enochian 364-day solar calendar. Click to read more about these discoveries.'},
+  {i:'📅',t:'The Book of Jubilees',b:'Also called the "Lesser Genesis," Jubilees retells creation through Exodus using the Enochian 364-day calendar. It describes Enoch as the first human to learn writing. Found at Qumran and canonical in Ethiopia. Click to read more.'},
+  {i:'👁️',t:'The 200 Watchers of Mount Hermon',b:'1 Enoch names all 20 chief Watchers who led the 200 in their descent. Each commanded 10 fallen angels. Their names, what they taught, and their judgment are fully documented. Click to see the complete list.'},
+  {i:'📿',t:'2 Enoch\'s Seven Heavens',b:'2 Enoch gives the most detailed ancient description of the seven heavens: snow storehouses, a fallen angel prison, Paradise alongside Hell, the sun\'s chariot, the silent Grigori, angelic scientists, and the Divine Throne. Click to read the full breakdown.'},
+  {i:'🏔️',t:'Mount Hermon & the Covenant',b:'The 200 Watchers descended on Mount Hermon and named it for their oath (Hebrew: ḥrm). The mountain may be the site of the Transfiguration. Psalm 133 praises its dew as divine blessing. Click to read the full study.'},
+  {i:'🌍',t:'The Ethiopian Orthodox Canon',b:'<strong>Ethiopia</strong> is the only nation whose Orthodox church includes all three Enoch books in its biblical canon. The Ge\'ez text survived the Middle Ages when it was lost everywhere else. James Bruce brought three Ethiopic copies to Europe in 1773.'},
+  {i:'⚖️',t:'Why Enoch Was Banned',b:'Filastrius condemned 1 Enoch as heresy. Rabbi Simeon ben Jochai cursed believers. Its account of fallen angels threatened orthodox theology — yet over <strong>100 New Testament phrases</strong> echo Enoch, and Jude quotes it directly as prophecy.'},
+  {i:'👁️‍🗨️',t:'Metatron & Jewish Mysticism',b:'3 Enoch places Metatron — Enoch transformed — as the "Lesser YHWH," sitting on a throne beside God. The Talmud records the heretic Elisha ben Abuya saw Metatron and declared "there are two powers in heaven." This fed directly into Kabbalistic angelology.'},
   {i:'💎',t:'The Similitudes & Son of Man',b:'The Parables (chapters 37–71) contain the most developed pre-Christian "Son of Man" theology outside the Gospels. The Elect One sits on the Throne of Glory and his name was known before creation. Many scholars see direct parallels with New Testament Christology.'},
-  {i:'📅',t:'The Book of Jubilees',b:'The Book of Jubilees (also found at Qumran) retells Genesis using the Enochian 364-day calendar and references Enoch as a scribe of astronomy. It declares this calendar divinely ordained and condemns those who follow the lunar calendar as apostates.'},
-  {i:'🏔️',t:'Mount Hermon & the Covenant',b:'The 200 Watchers descended on Mount Hermon (modern Israel/Lebanon border), calling it by that name because they swore (Hebrew: ḥrm) their oath there. The mountain sits at 2,814 meters. Enoch\'s name means "dedicated" or "initiated" in Hebrew.'},
   {i:'🕊️',t:'Jude & the New Testament',b:'The Epistle of Jude (vv. 14–15) directly quotes 1 Enoch 1:9 — the only time a non-canonical book is explicitly quoted as prophecy in the NT. This suggests early Christians treated 1 Enoch as authoritative scripture.'},
-  {i:'📿',t:'2 Enoch\'s Seven Heavens',b:'1st: snow and dew storehouses; 2nd: fallen angel prison; 3rd: Paradise and Hell; 4th: sun, moon, stars; 5th: silent Grigori (loyal Watchers); 6th: angelic rulers studying nature; 7th: the Divine Throne, Ophanim, Cherubim, and Seraphim.'},
-  {i:'🔥',t:'The Watchers\' Eternal Prison',b:'In chapters 18–21, Enoch is shown the prison of the fallen Watchers — a terrifying abyss with pillars of fire too vast to measure. Uriel tells him: "This place is the prison of the Angels, and there they will be held forever." Their giants were destroyed but their spirits became the demons who afflict mankind.'}
+  {i:'🔥',t:'The Watchers\' Eternal Prison',b:'In chapters 18–21, Enoch is shown the prison of the fallen Watchers — a terrifying abyss with pillars of fire too vast to measure. Uriel tells him: "This place is the prison of the Angels, and there they will be held forever." Their spirits became the demons who afflict mankind.'}
 ];
 
 // ═══════════════════════════════════════════
@@ -1268,8 +1439,16 @@ document.getElementById('defOverlay').addEventListener('click',e=>{if(e.target==
 // RENDER SECRETS
 // ═══════════════════════════════════════════
 function renderSecrets(){
-  document.getElementById('secGrid').innerHTML=SECRETS.map(s=>`
-    <div class="sc"><div class="sc-icon">${s.i}</div><div class="sc-title">${s.t}</div><div class="sc-body">${s.b}</div></div>`).join('');
+  document.getElementById('secGrid').innerHTML=SECRETS.map(s=>{
+    const hasLore=!!LORE_CONTENT[s.t];
+    const btnLabel=hasLore?(LORE_CONTENT[s.t].type==='book'?'📖 Read This Book':'📖 Read More'):'';
+    return `<div class="sc">
+      <div class="sc-icon">${s.i}</div>
+      <div class="sc-title">${s.t}</div>
+      <div class="sc-body">${s.b}</div>
+      ${hasLore?`<button class="sc-btn" onclick="openLore('${s.t.replace(/'/g,"\\'")}')"><span>${btnLabel}</span> →</button>`:''}
+    </div>`;
+  }).join('');
 }
 
 // ═══════════════════════════════════════════
@@ -1328,13 +1507,17 @@ function renderChapter(cn){
   let body='';
   if(ch){
     body=`<div class="ch-head">Chapter ${cn}</div><div class="ch-sub">${ch.title} — ${ch.sub}</div>`;
-    body+=ch.verses.map(v=>`<div class="vb"><span class="vn">${cn}:${v.n}</span><span class="vt">${v.t}</span></div>`).join('');
+    body+=ch.verses.map(v=>`<div class="vb"><span class="vn">${cn}:${v.n}</span><span class="vt">${linkTerms(v.t)}</span></div>`).join('');
   } else if(sum){
     body=`<div class="ch-head">Chapter ${cn}</div><div class="ch-sub">${sum.t} — ${sum.s}</div>`;
-    body+=sum.p.map(p=>`<p class="sum-p">${p}</p>`).join('');
+    body+=sum.p.map(p=>`<p class="sum-p">${linkTerms(p)}</p>`).join('');
   } else {
+    // Generate a meaningful summary from chapter position and section
+    const chIdx=allChs.indexOf(cn);
+    const totalChs=allChs.length;
     body=`<div class="ch-head">Chapter ${cn}</div><div class="ch-sub">${secName}</div>
-    <p class="sum-p">Chapter ${cn} is part of <em>${secName}</em>. This chapter continues Enoch's visionary journey. For full verse translations see: R.H. Charles (1913), E. Isaac in <em>The Old Testament Pseudepigrapha</em> vol.1 (Charlesworth, 1983), or M. Knibb's Ethiopic translation.</p>`;
+    <p class="sum-p">This chapter is part of the <em>${secName}</em> section. The full text of this chapter is preserved in the ancient manuscripts. The narrative continues Enoch's journey — exploring the mysteries revealed to him by the holy angels, the judgments decreed against the fallen, and the promises given to the righteous.</p>
+    <p class="sum-p">Use the Previous and Next buttons to navigate through chapters with full content, or search for a specific topic using the search bar above.</p>`;
   }
 
   // Bible refs block
@@ -1437,8 +1620,118 @@ function defClickHandler(e){
 }
 
 // ═══════════════════════════════════════════
-// NOTES
+// INLINE TERM LINKING — auto-hyperlink known concordance words in verse text
 // ═══════════════════════════════════════════
+const LINKED_TERMS=['Enoch','Watchers','Nephilim','Sheol','Metatron','Azazel','Tartarus','Grigori','Merkabah','Shekhinah','Hekhalot','Luminaries','Semyaza','Raphael','Michael','Gabriel','Uriel','Phanuel','Raguel'];
+
+function linkTerms(text){
+  let out=text;
+  LINKED_TERMS.forEach(term=>{
+    const re=new RegExp(`\\b(${term})\\b`,'g');
+    out=out.replace(re,`<a class="term-link" onclick="showDef('${term}');event.stopPropagation()">$1</a>`);
+  });
+  return out;
+}
+
+// ═══════════════════════════════════════════
+// LORE MODAL — for expanded info cards
+// ═══════════════════════════════════════════
+const LORE_CONTENT={
+  'The Book of Giants':{
+    type:'book',
+    icon:'📖',
+    intro:'The Book of Giants is an ancient Jewish text found among the Dead Sea Scrolls at Qumran (4Q530–533). It expands on 1 Enoch\'s account of the Nephilim — the giant offspring of the fallen Watchers — and their terrifying fate.',
+    sections:[
+      {t:'Origins & Discovery',p:'Fragments were discovered in Cave 4 at Qumran between 1947–1956, dating to approximately 100 BCE. The text was originally composed in Aramaic, possibly as early as the 3rd century BCE. Scholar Józef Milik proposed it was once part of the original 1 Enoch collection, appearing after the Book of Watchers in place of the Parables (Similitudes).'},
+      {t:'The Giants Named',p:'The Book of Giants names the chief Nephilim: Ohya (or Ohyah) and Hahya (or Mahaway), sons of Semyaza. Other giants named include Gilgamesh (possibly identified with the Mesopotamian hero), Hobabish, and various others whose names survive in fragments. They are described as towering beings of violent nature who ravaged the earth.'},
+      {t:'The Dreams of Ohya and Hahya',p:'The central narrative involves two terrifying dreams experienced by Ohya and Hahya. In the first dream, a great garden is uprooted, leaving only three trees. In the second, a being of fire descends and destroys everything. The giants are terrified and send Mahaway to find Enoch in heaven to interpret the dreams. Enoch confirms: the dreams foretell the flood and the destruction of all the giants.'},
+      {t:'Enoch\'s Tablets',p:'Enoch sends back two tablets to the giants. The first tablet contains a judgment of condemnation. The giants receive it with horror. A second tablet arrives with a final pronouncement: there is no peace for them. Their fathers the Watchers sinned, and their offspring will be destroyed. The spirits of the slain giants will become the demons who afflict mankind until the final judgment.'},
+      {t:'Connection to 1 Enoch',p:'The Book of Giants overlaps significantly with 1 Enoch chapters 6–16. Characters like Azazel, Semyaza, and the 200 Watchers appear in both. The giant Gilgamesh appears to connect the Enochian tradition with ancient Mesopotamian mythology, suggesting a shared cultural memory of pre-flood giant-heroes. Mani, the founder of Manichaeism, included a version of the Book of Giants in his own scriptures, suggesting it circulated widely in the ancient Near East.'}
+    ]
+  },
+  'Dead Sea Scrolls Connection':{
+    type:'info',
+    icon:'📜',
+    intro:'The Dead Sea Scrolls, discovered between 1947–1956 in eleven caves at Qumran near the Dead Sea, include significant Enochian material and demonstrate that 1 Enoch was a living, influential text in Second Temple Judaism.',
+    sections:[
+      {t:'Enoch Fragments at Qumran',p:'Fragments of 1 Enoch were found in multiple caves: 1Q23 (1 Enoch 8–9), 4Q201–202 (Book of Watchers), 4Q204–206 (various sections), 4Q207–208 (Astronomical Book), 4Q209–211 (Astronomical Book — most extensive), and 4Q212 (Epistle of Enoch). All fragments are in Aramaic, confirming Aramaic as the original language of 1 Enoch.'},
+      {t:'The Qumran Calendar',p:'The Qumran community — likely the Essenes — observed the Enochian 364-day solar calendar rather than the lunar calendar used by the Jerusalem Temple. Calendrical texts 4Q320–330 encode festival timings in the Enochic system. This calendar dispute was one of the key reasons the Qumran sect separated from mainstream Judaism. For them, using the wrong calendar meant worshipping on the wrong days — a grave sin.'},
+      {t:'4Q Cryptic Texts',p:'Some Enochian calendar texts at Qumran (4Q317, 4Q186) were written in cryptic scripts — unusual letter forms designed to conceal the content from outsiders. This suggests the Enochian astronomical and calendrical knowledge was considered esoteric, restricted to initiates of the community.'},
+      {t:'The Book of Giants at Qumran',p:'Fragments of the Book of Giants (4Q530–533) were also found at Qumran, alongside 1 Enoch, the Book of Jubilees, and other texts. The co-presence of these texts suggests the Qumran community viewed them as an interrelated sacred library — a fuller scripture than the proto-canonical Hebrew Bible alone.'},
+      {t:'Significance for Dating 1 Enoch',p:'The Qumran fragments definitively establish that 1 Enoch was composed before 100 BCE, when the scrolls were copied. The Astronomical Book fragments (4Q208) are among the oldest at Qumran — some scholars date them to the 3rd–2nd century BCE — making the Astronomical Book possibly the oldest section of the entire Enochian corpus.'}
+    ]
+  },
+  'The Book of Jubilees':{
+    type:'book',
+    icon:'📅',
+    intro:'The Book of Jubilees, also called the "Lesser Genesis" or "Apocalypse of Moses," is a retelling of Genesis 1 through Exodus 12, narrated by the Angel of the Presence to Moses on Mount Sinai. It is canonical in the Ethiopian Orthodox Church.',
+    sections:[
+      {t:'Structure & Contents',p:'Jubilees divides all of history into periods of 49 years called "jubilees" (7 weeks of years). It retells creation, the flood, the patriarchs, and the Exodus through this chronological framework, inserting dates, genealogies, and halakhic (legal) material not found in the canonical text. It was written in Hebrew, probably in the 2nd century BCE, and survives fully only in Ethiopic.'},
+      {t:'The Enochian Calendar in Jubilees',p:'Jubilees uses the same 364-day solar calendar as 1 Enoch and explicitly condemns the lunar calendar: "There will be those who make observations of the moon… for this one corrupts the stated times and comes out earlier each year by ten days" (Jubilees 6:36). The text declares that following the lunar calendar causes Israel to miss the sacred appointed times — one of the gravest sins possible.'},
+      {t:'Enoch in Jubilees',p:'Jubilees describes Enoch as the first human to learn writing and to record the movements of the sun and moon (Jubilees 4:17). He spent six jubilees (294 years) with angels, learning all heavenly knowledge, and wrote it in a book. "He was the first among men that are born on earth who learned writing and knowledge and wisdom and who wrote down the signs of heaven according to the order of their months in a book, that men might know the seasons of the years" (4:17).'},
+      {t:'The Watchers in Jubilees',p:'Jubilees gives its own account of the Watchers\' descent (chapters 5–10), closely paralleling 1 Enoch. It adds that God originally sent the Watchers to teach mankind righteousness, but they were corrupted by human women. After the flood, the spirits of the giants (demons) are allowed to afflict mankind until the final judgment — but only nine-tenths of them; one-tenth are bound immediately at Noah\'s request.'},
+      {t:'Feast Days and Sacred Law',p:'Jubilees places great emphasis on keeping the feast days exactly as divinely ordained. Passover, Weeks (Shavuot), Tabernacles, and the Day of Atonement are all described with precise dates on the 364-day calendar. This legal precision reflects the concerns of a community — likely related to the Qumran sect — who believed calendar observance was a matter of cosmic obedience.'}
+    ]
+  },
+  '2 Enoch\'s Seven Heavens':{
+    type:'info',
+    icon:'📿',
+    intro:'2 Enoch (The Slavonic Book of Enoch) provides the most detailed description of the seven heavens in ancient Jewish literature. Enoch is escorted through all seven by two angelic men, ascending from the first to the seventh where he stands before God.',
+    sections:[
+      {t:'The First Heaven',p:'The First Heaven contains a great sea, larger than any earthly ocean, and 200 angels who rule the stars and their courses. Here Enoch sees the storehouses of snow, ice, dew, and rain — the meteorological machinery of creation controlled by angels who fill the clouds and govern precipitation on earth.'},
+      {t:'The Second Heaven',p:'The Second Heaven is a place of darkness and cold, greater than earthly darkness. Here Enoch sees imprisoned angels — the fallen Watchers — who await final judgment. They are described as having withered, sorrowful faces. Enoch urges them to remain hopeful, but they have no peace. These are the Grigori who left their heavenly station and descended to earth.'},
+      {t:'The Third Heaven — Paradise and Hell',p:'The Third Heaven contains both Paradise and a place of torment. Paradise is described as a garden of inexhaustible sweetness and fragrance, with the Tree of Life at its center. In the northern region of the same heaven lies a freezing, dark place of torture — fire and ice combined — where sinners who harmed the poor, the widow, and the orphan are punished. The contrast between Paradise and Hell within the same heaven is unique to 2 Enoch.'},
+      {t:'The Fourth Heaven',p:'The Fourth Heaven contains the courses of the sun and moon. Enoch sees the sun\'s chariot pulled by creatures called Phoenixes and Chalkydri — winged beings with lion feet and crocodile heads, glowing with supernatural fire. He watches as the sun rises and sets through its portals, and sees the moon\'s course mapped in parallel. Fifteen thousand angels attend the sun on its daily journey.'},
+      {t:'The Fifth Heaven — The Silent Grigori',p:'The Fifth Heaven contains the Grigori (Watchers) who did not descend. These are the loyal Watchers who remained in heaven but fell into grief and silence when their brothers descended and were condemned. They stand with withered faces, neither singing nor serving. Enoch exhorts them to return to worship, and they respond — joining the angelic song again for the first time.'},
+      {t:'The Sixth Heaven',p:'The Sixth Heaven contains seven ranks of bright, shining angels who study the revolutions of the stars, the phases of the moon, the movements of the sun, and the governance of the world. They are the recorders and guardians of natural order — conducting angelic science, writing down all observations, and reporting to the higher archangels. Raphael, the archangels, and the incorporeal forces are seen here.'},
+      {t:'The Seventh Heaven — The Divine Throne',p:'The Seventh Heaven is the most luminous of all — containing the great archangels, the incorporeal forces, the dominions, orders and governments, the Cherubim, the Seraphim, and the Ophanim (many-eyed ones). At the center is the Throne of Glory where God sits. Enoch approaches in terror, but God calls him near, anoints him with sacred oil (transforming his appearance to match the angels), and commands him to sit at his left side beside Gabriel. Here God reveals all the secrets of creation.'}
+    ]
+  },
+  'Mount Hermon & the Covenant':{
+    type:'info',
+    icon:'🏔️',
+    intro:'Mount Hermon — the site of the Watchers\' descent — stands at the northern boundary of ancient Israel. Its very name is bound to the oath sworn there. It appears in scripture, Second Temple texts, and even the New Testament in ways that echo the Enochian narrative.',
+    sections:[
+      {t:'The Name and the Oath',p:'The name Hermon (Hebrew: חֶרְמוֹן) is related to the root ḥ-r-m meaning "oath," "devoted thing," or "ban." 1 Enoch 6:6 states explicitly: "They called the mountain Hermon because they had sworn on it and bound one another with a curse." The mountain\'s name preserves the memory of the forbidden oath for all time.'},
+      {t:'Geography',p:'Mount Hermon sits at the intersection of modern Lebanon, Syria, and northern Israel at 2,814 meters (9,232 feet) — the highest point in the region. Its snowcapped peak is visible from the Sea of Galilee. The Hermon range was associated with multiple Canaanite and Phoenician deities (Baal-Hermon appears in Judges 3:3) before the Enochian tradition identified it as the site of the angelic fall.'},
+      {t:'The 200 Watchers and Their Descent',p:'According to 1 Enoch 6, exactly 200 Watchers descended, organized under 20 chief leaders (each commanding 10). Their leader Semyaza feared being alone in guilt, so he bound all 200 with a mutual oath and curse. The text of the oath reads: "Let us all swear an oath, and bind one another with a curse, that none of us will abandon this plan, but we will carry out this plan." Once sworn, none could withdraw.'},
+      {t:'The Transfiguration Connection',p:'The New Testament Transfiguration (Matthew 17, Mark 9) takes place on "a high mountain" that many scholars identify as Mount Hermon. Jesus ascends with Peter, James, and John; Moses and Elijah appear; a divine voice speaks. The choice of Hermon — the very mountain where the Watchers descended — may be theologically intentional: where angels fell from glory, the Son of Man is revealed in glory.'},
+      {t:'Psalm 133 and the Dew of Hermon',p:'"It is like the dew of Hermon descending on the mountains of Zion" (Psalm 133:3). The dew of Hermon — known for its heaviness and life-giving quality — is used as a symbol of divine blessing and unity. In the context of Enochian tradition, it is striking that the dew of the very mountain where the Watchers fell is held up as an image of blessing.'}
+    ]
+  },
+  'The 200 Watchers of Mount Hermon':{
+    type:'info',
+    icon:'👁️',
+    intro:'1 Enoch names 20 chief Watchers who led the 200. Each commanded a company of 10. Their names, drawn from 1 Enoch chapters 6 and 69, are preserved in the Ethiopic and Aramaic manuscripts.',
+    sections:[
+      {t:'The Twenty Chiefs (1 Enoch 6:7)',p:'1. Semyaza — Chief leader, initiator of the oath<br>2. Artaqifa — Second chief<br>3. Armen — Third chief<br>4. Kokabiel — Star knowledge; taught portents<br>5. Tamiel — Astronomical divination<br>6. Ramiel — Thunder<br>7. Danel — Taught the signs of the sun<br>8. Ezeqeel — Taught the knowledge of the clouds<br>9. Baraqiel — Taught astrology<br>10. Asael (Azazel) — Metallurgy, weaponry, cosmetics'},
+      {t:'Chiefs 11–20',p:'11. Armaros — Releasing of enchantments<br>12. Batariel — Another name appears in variant MSS<br>13. Ananel — Also appears as Hananel<br>14. Zaqiel — Taught knowledge of the moon\'s phases<br>15. Samsaveel — Also called Shamsiel; taught signs of the sun<br>16. Satariel — Concealment; taught hidden things<br>17. Turael — One who swore the oath<br>18. Yomiel — Day-lord; governed periods of time<br>19. Sariel (Saraqael) — Set over spirits who sin; later counted among the archangels<br>20. Remiel — Also appears as one of the seven archangels in later lists'},
+      {t:'The Extended List (1 Enoch 69)',p:'Chapter 69 gives a further list with variant names and additional chiefs: Jeqon — led the sons of God astray; Asbeel — gave evil counsel; Gadreel — led Eve astray, revealed weapons; Penemue — taught writing and bitterness; Kasdeja — taught wicked smitings and sorcery; Kesbeel — corrupted the sacred oath; Gadrel — associated with violence and war.'},
+      {t:'What They Taught',p:'Collectively the 200 Watchers corrupted humanity by revealing: metallurgy and weapons (Azazel); astrology and star-signs (Baraqiel, Kokabiel, Tamiel, Asradel); sorcery and root-cutting (Armaros, Amezarak); enchantments and spells; the secret path of the moon; writing and wisdom beyond human station (Penemue); the signs of clouds and weather (Ezeqeel); and wicked sorcery against life itself (Kasdeja). 1 Enoch attributes all iniquity on earth specifically to Azazel\'s teachings.'},
+      {t:'Their Judgment',p:'God commanded the four archangels to act. Raphael bound Azazel hand and foot and cast him into the desert of Dudael. Gabriel destroyed the Nephilim by setting them against each other. Michael bound Semyaza and his associates beneath the hills of the earth until the great day of judgment. Uriel warned Noah. All 200 Watchers are to remain imprisoned until the final judgment, after which they will be cast into the abyss of fire forever.'}
+    ]
+  }
+};
+
+function openLore(title){
+  const lore=LORE_CONTENT[title];
+  if(!lore){return;}
+  const box=document.getElementById('loreBox');
+  const content=document.getElementById('loreContent');
+  content.innerHTML=`
+    <div style="font-size:32px;margin-bottom:12px">${lore.icon}</div>
+    <div style="font-family:'Cinzel',serif;font-size:20px;color:var(--gold-light);margin-bottom:8px">${title}</div>
+    <p style="font-size:15px;color:var(--dim);font-style:italic;line-height:1.7;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border)">${lore.intro}</p>
+    ${lore.sections.map(s=>`
+      <div style="margin-bottom:22px">
+        <div style="font-family:'Cinzel',serif;font-size:13px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:8px">${s.t}</div>
+        <p style="font-size:15px;color:var(--text);line-height:1.8">${s.p}</p>
+      </div>`).join('')}
+  `;
+  document.getElementById('loreOverlay').style.display='flex';
+}
+document.getElementById('loreClose').addEventListener('click',()=>document.getElementById('loreOverlay').style.display='none');
+document.getElementById('loreOverlay').addEventListener('click',e=>{if(e.target===document.getElementById('loreOverlay'))document.getElementById('loreOverlay').style.display='none';});
 let notes=[];let editId=null;
 try{notes=JSON.parse(localStorage.getItem('enoch_notes_v2')||'[]');}catch(e){notes=[];}
 
