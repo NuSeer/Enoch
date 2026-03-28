@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Books of Enoch — Sacred Archive Index</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d08a;
+    --gold-dim: #7a5f28;
+    --gold-pale: rgba(201,168,76,0.12);
+    --bg: #04090f;
+    --bg2: #060d16;
+    --text: #f2e8d0;
+    --dim: #9d8e70;
+    --border: rgba(201,168,76,0.2);
+    --sage: #4a7c59;
+    --ember: #c44a1a;
+    --violet: #4a1a7e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', serif;
+    font-size: 17px;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── STARFIELD ── */
+  #stars {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  }
+  .star {
+    position: absolute; background: #fff; border-radius: 50%;
+    animation: twinkle var(--d,3s) ease-in-out infinite var(--dl,0s);
+  }
+  @keyframes twinkle {
+    0%,100%{opacity:var(--lo,.15);transform:scale(1);}
+    50%{opacity:var(--hi,.7);transform:scale(1.3);}
+  }
+
+  /* ── BACKGROUND RADIALS ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(61,26,94,0.35) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 70%, rgba(13,26,42,0.6) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(196,74,26,0.08) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* ── LAYOUT ── */
+  #wrap { position: relative; z-index: 1; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px 80px;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
+
+  /* Animated rings */
+  .hero-rings {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.06);
+    animation: ringPulse var(--rd, 8s) ease-in-out infinite var(--rdl, 0s);
+  }
+  .ring:nth-child(1) { width: 500px; height: 500px; --rd:12s; --rdl:0s; border-color: rgba(201,168,76,0.08); }
+  .ring:nth-child(2) { width: 750px; height: 750px; --rd:16s; --rdl:2s; border-color: rgba(201,168,76,0.05); }
+  .ring:nth-child(3) { width: 1000px; height: 1000px; --rd:20s; --rdl:4s; border-color: rgba(201,168,76,0.03); }
+  .ring:nth-child(4) { width: 1300px; height: 1300px; --rd:24s; --rdl:6s; border-color: rgba(201,168,76,0.02); }
+
+  @keyframes ringPulse {
+    0%,100%{transform:scale(1);opacity:0.6;}
+    50%{transform:scale(1.04);opacity:1;}
+  }
+
+  .hero-emblem {
+    font-size: 14px;
+    letter-spacing: 10px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(32px, 7vw, 78px);
+    font-weight: 900;
+    line-height: 1.05;
+    margin-bottom: 16px;
+    background: linear-gradient(180deg, #fff 0%, var(--gold-light) 40%, var(--gold) 70%, var(--gold-dim) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.5s forwards;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(12px, 2vw, 16px);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 0.8s forwards;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1s forwards;
+  }
+  .hero-divider-line { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim)); }
+  .hero-divider-line:last-child { background: linear-gradient(90deg, var(--gold-dim), transparent); }
+  .hero-divider-gem { color: var(--gold); font-size: 18px; }
+
+  .hero-desc {
+    max-width: 640px;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.85;
+    color: var(--dim);
+    font-style: italic;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.1s forwards;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.3s forwards;
+  }
+
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #04090f;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dim));
+    border: none;
+    padding: 16px 36px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+    box-shadow: 0 4px 24px rgba(201,168,76,0.25), 0 0 40px rgba(201,168,76,0.1);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 40px rgba(201,168,76,0.4), 0 0 60px rgba(201,168,76,0.15);
+    background: linear-gradient(135deg, #fff8e0, var(--gold-light), var(--gold));
+  }
+
+  .btn-secondary {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 15px 32px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease 2s forwards;
+  }
+  .scroll-hint span {
+    font-family: 'Raleway', sans-serif;
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+  .scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    transform: rotate(45deg);
+    animation: bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(4px);} }
+
+  /* ── SECTIONS ── */
+  section { padding: 80px 24px; max-width: 1300px; margin: 0 auto; }
+
+  .section-tag {
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-tag::before { content: ''; width: 30px; height: 1px; background: var(--gold-dim); }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(22px, 3.5vw, 38px);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    line-height: 1.2;
+  }
+
+  .section-intro {
+    color: var(--dim);
+    font-style: italic;
+    line-height: 1.8;
+    max-width: 600px;
+    font-size: 16px;
+    margin-bottom: 48px;
+  }
+
+  /* ── CONTENTS TABLE ── */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .toc-item {
+    background: rgba(6,13,22,0.95);
+    padding: 28px 32px;
+    transition: all 0.25s;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .toc-item::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--gold-light), var(--gold-dim));
+    transform: scaleY(0);
+    transition: transform 0.25s;
+    transform-origin: bottom;
+  }
+
+  .toc-item:hover {
+    background: rgba(201,168,76,0.06);
+  }
+  .toc-item:hover::before { transform: scaleY(1); }
+
+  .toc-num {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .toc-name {
+    font-family: 'Cinzel', serif;
+    font-size: 17px;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .toc-desc {
+    font-size: 13px;
+    color: var(--dim);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .toc-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+
+  .toc-tag {
+    font-family: 'Raleway', sans-serif;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 2px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.18);
+    color: var(--gold-dim);
+  }
+
+  .toc-arrow {
+    position: absolute;
+    top: 28px;
+    right: 28px;
+    color: var(--gold-dim);
+    font-size: 18px;
+    transition: all 0.25s;
+    opacity: 0;
+  }
+  .toc-item:hover .toc-arrow { opacity: 1; transform: translateX(4px); }
+
+  /* ── FEATURES GRID ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+
+  .feat {
+    background: linear-gradient(135deg, rgba(26,18,8,0.8), rgba(6,13,22,0.9));
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+    transition: all 0.25s;
+  }
+  .feat:hover { border-color: rgba(201,168,76,0.45); transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+
+  .feat-icon { font-size: 30px; margin-bottom: 12px; }
+  .feat-title { font-family: 'Cinzel', serif; font-size: 14px; color: var(--gold-light); margin-bottom: 8px; letter-spacing: 1px; }
+  .feat-desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+  /* ── STAT BAR ── */
+  .stats-bar {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 60px;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 24px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border);
+    background: rgba(6,13,22,0.6);
+    transition: background 0.2s;
+  }
+  .stat:last-child { border-right: none; }
+  .stat:hover { background: rgba(201,168,76,0.05); }
+
+  .stat-n {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(24px, 3.5vw, 36px);
+    color: var(--gold);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-l {
+    font-family: 'Raleway', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-section {
+    text-align: center;
+    padding: 80px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-section::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'EB Garamond', serif;
+    font-size: 200px;
+    color: rgba(201,168,76,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-size: clamp(18px, 2.5vw, 26px);
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto 20px;
+    position: relative;
+  }
+
+  .quote-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 24px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-emblem {
+    font-size: 20px;
+    letter-spacing: 8px;
+    color: var(--gold-dim);
+    margin-bottom: 14px;
+  }
+
+  .footer-text {
+    font-family: 'Raleway', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(157,142,112,0.5);
+    line-height: 2;
+  }
+
+  /* ── ORNAMENTAL DIVIDER ── */
+  .ornament {
+    text-align: center;
+    padding: 20px 0 0;
+    font-size: 20px;
+    letter-spacing: 10px;
+    color: rgba(201,168,76,0.2);
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .stats-bar { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    .toc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div id="stars"></div>
+
+<div id="wrap">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="hero-rings">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+    </div>
+
+    <div class="hero-emblem">✦ &nbsp; Sacred Archive &nbsp; ✦</div>
+
+    <h1 class="hero-title">The Books<br>of Enoch</h1>
+
+    <div class="hero-subtitle">Apocryphal &amp; Pseudepigraphal Texts</div>
+
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <div class="hero-divider-gem">✦</div>
+      <div class="hero-divider-gem" style="font-size:12px;color:var(--gold-dim)">⬡</div>
+      <div class="hero-divider-gem">✦</div>
+      <div class="hero-divider-line"></div>
+    </div>
+
+    <p class="hero-desc">
+      Three great books bearing the name of Enoch — prophet, scribe of righteousness,
+      and seventh patriarch from Adam. Preserved across Ethiopian, Slavonic, and Hebrew
+      traditions. Now gathered in one sacred archive.
+    </p>
+
+    <div class="hero-cta">
+      <a href="enoch_dashboard.html" class="btn-primary">Enter the Archive ⟶</a>
+      <a href="#contents" class="btn-secondary">View Contents</a>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </div>
+
+  <!-- ══ STATS ══ -->
+  <section style="padding:0 24px 60px">
+    <div class="stats-bar reveal">
+      <div class="stat"><span class="stat-n">3</span><span class="stat-l">Sacred Books</span></div>
+      <div class="stat"><span class="stat-n">224</span><span class="stat-l">Total Chapters</span></div>
+      <div class="stat"><span class="stat-n">20</span><span class="stat-l">Named Watchers</span></div>
+      <div class="stat"><span class="stat-n">7</span><span class="stat-l">Archangels</span></div>
+      <div class="stat"><span class="stat-n">364</span><span class="stat-l">Day Calendar</span></div>
+      <div class="stat"><span class="stat-n">16</span><span class="stat-l">Concordance Terms</span></div>
+    </div>
+  </section>
+
+  <!-- ══ CONTENTS ══ -->
+  <section id="contents">
+    <div class="reveal">
+      <div class="section-tag">Contents</div>
+      <h2 class="section-title">What's Inside the Archive</h2>
+      <p class="section-intro">Every section of the dashboard — from the readable books to the celestial calendar, angel ranks, and Hebrew concordance.</p>
+    </div>
+
+    <div class="toc-grid reveal">
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 01</div>
+        <div class="toc-name">📜 1 Enoch — The Ethiopic Book</div>
+        <div class="toc-desc">108 chapters across five books: Watchers, Parables, Astronomical Book, Dream Visions, and the Epistle. Ethiopian Orthodox canon. c.300 BCE–100 CE.</div>
+        <div class="toc-tags"><span class="toc-tag">108 Chapters</span><span class="toc-tag">Ethiopian Canon</span><span class="toc-tag">Scroll & Flip</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 02</div>
+        <div class="toc-name">📜 2 Enoch — The Slavonic Book</div>
+        <div class="toc-desc">68 chapters of Enoch's ascent through seven heavens, the creation account, and his return to earth. Preserved in Old Slavonic. c.1st Century CE.</div>
+        <div class="toc-tags"><span class="toc-tag">68 Chapters</span><span class="toc-tag">Slavonic</span><span class="toc-tag">Seven Heavens</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 03</div>
+        <div class="toc-name">📜 3 Enoch — The Hebrew Book</div>
+        <div class="toc-desc">48 chapters of Rabbi Ishmael's ascent through the Merkabah palaces and his encounter with Metatron — Enoch transformed. Sefer Hekhalot. c.5th–6th Century CE.</div>
+        <div class="toc-tags"><span class="toc-tag">48 Chapters</span><span class="toc-tag">Kabbalistic</span><span class="toc-tag">Metatron</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 04</div>
+        <div class="toc-name">⚡ Angelic Hierarchy & Ranks</div>
+        <div class="toc-desc">The heavenly host ranked from the Four Throne Presences through the Seven Archangels and named Host angels — each with subordinates, domains, and functions.</div>
+        <div class="toc-tags"><span class="toc-tag">4 Presences</span><span class="toc-tag">7 Archangels</span><span class="toc-tag">Host Angels</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 05</div>
+        <div class="toc-name">🔥 The Fallen Watchers</div>
+        <div class="toc-desc">All 20 named chief Watchers with their ranks, forbidden teachings, and those under them — from Semyaza the leader to Kasdeja who taught wicked sorcery.</div>
+        <div class="toc-tags"><span class="toc-tag">20 Chiefs</span><span class="toc-tag">Ranks & Sins</span><span class="toc-tag">Nephilim</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 06</div>
+        <div class="toc-name">🌙 The Enochian Calendar</div>
+        <div class="toc-desc">The 364-day solar calendar revealed by the angel Uriel. Interactive seasonal views, intercalary days, holy days, Sabbath tracking, and season guardian angels.</div>
+        <div class="toc-tags"><span class="toc-tag">364 Days</span><span class="toc-tag">4 Seasons</span><span class="toc-tag">Holy Days</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 07</div>
+        <div class="toc-name">☀️ The Luminaries</div>
+        <div class="toc-desc">Charts of the sun and moon's paths through twelve gates (1 Enoch 72–82). Daily hours of light per gate, the six eastern portals, seasonal sun course, and the moon's 29–30 day cycle.</div>
+        <div class="toc-tags"><span class="toc-tag">12 Gates</span><span class="toc-tag">Sun & Moon</span><span class="toc-tag">Charts</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 08</div>
+        <div class="toc-name">📖 Hebrew & Greek Concordance</div>
+        <div class="toc-desc">16 key Enochian terms with original Hebrew, Greek, Aramaic, and Ge'ez scripts, Strong's numbers, transliterations, full definitions, and biblical references. Filterable by language.</div>
+        <div class="toc-tags"><span class="toc-tag">16 Terms</span><span class="toc-tag">Strong's</span><span class="toc-tag">4 Languages</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 09</div>
+        <div class="toc-name">✦ Secrets & Hidden Lore</div>
+        <div class="toc-desc">The Book of Giants, Dead Sea Scrolls, Ethiopian canon, Metatron controversy, Son of Man theology, Book of Jubilees, Mount Hermon, and Jude's NT quotation.</div>
+        <div class="toc-tags"><span class="toc-tag">12 Topics</span><span class="toc-tag">Book of Giants</span><span class="toc-tag">DSS</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+      <a href="enoch_dashboard.html#" class="toc-item">
+        <div class="toc-num">Section 10</div>
+        <div class="toc-name">✏️ My Study Notes</div>
+        <div class="toc-desc">A personal note-taking system for recording insights, cross-references, and study observations. Tagged, searchable, and saved locally in your browser between sessions.</div>
+        <div class="toc-tags"><span class="toc-tag">Persistent</span><span class="toc-tag">Taggable</span><span class="toc-tag">Searchable</span></div>
+        <span class="toc-arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ══ QUOTE ══ -->
+  <div class="quote-section reveal">
+    <p class="quote-text">
+      "These are the words of the blessing of Enoch; according to which he blessed the chosen and righteous who must be present on the day of distress, which is appointed, for the removal of all the wicked and impious."
+    </p>
+    <div class="quote-ref">1 Enoch 1:1</div>
+  </div>
+
+  <!-- ══ FEATURES ══ -->
+  <section>
+    <div class="reveal">
+      <div class="section-tag">Features</div>
+      <h2 class="section-title">Tools for Deep Study</h2>
+      <p class="section-intro">Every feature built to help you read, mark, cross-reference, and understand the Enochian texts.</p>
+    </div>
+
+    <div class="features-grid reveal">
+      <div class="feat">
+        <div class="feat-icon">📖</div>
+        <div class="feat-title">Scroll & Flip Reader</div>
+        <div class="feat-desc">Every chapter across all three books. Scroll continuously or flip chapter by chapter. Section dividers keep you oriented.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🟡</div>
+        <div class="feat-title">Highlight & Underline</div>
+        <div class="feat-desc">Select any text in the reader and mark it with yellow highlighting or a gold underline. Clear all marks with one click.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📖</div>
+        <div class="feat-title">Bible Cross-References</div>
+        <div class="feat-desc">Toggle inline Bible scripture connections for key chapters — Genesis, Daniel, Jude, Revelation, Ezekiel, and more.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔤</div>
+        <div class="feat-title">Word Definitions</div>
+        <div class="feat-desc">Enable definition mode and click any word to pull up its full Hebrew/Greek concordance entry with Strong's number.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔍</div>
+        <div class="feat-title">Global Search</div>
+        <div class="feat-desc">Search across all books, verses, angels, fallen Watchers, and concordance terms. Results link directly to the source.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">☀️</div>
+        <div class="feat-title">Light & Dark Themes</div>
+        <div class="feat-desc">Toggle between a deep midnight dark theme and a warm parchment light theme — whichever suits your reading environment.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📊</div>
+        <div class="feat-title">Luminaries Charts</div>
+        <div class="feat-desc">Visual bar charts of the sun and moon's daily light hours per gate, portal grids, seasonal tables, and the moon's full cycle.</div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">✏️</div>
+        <div class="feat-title">Persistent Notes</div>
+        <div class="feat-desc">Write, tag, search, and edit study notes that save in your browser. No account needed — your notes stay between visits.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ SECOND QUOTE ══ -->
+  <div class="quote-section reveal">
+    <p class="quote-text">
+      "Wisdom found no place where she might dwell; then a dwelling-place was assigned to her in the heavens. Wisdom went forth to make her dwelling among the children of men, and found no dwelling-place; Wisdom returned to her place."
+    </p>
+    <div class="quote-ref">1 Enoch 42:1–2</div>
+  </div>
+
+  <!-- ══ ENTER CTA ══ -->
+  <section style="text-align:center;padding:60px 24px 100px">
+    <div class="reveal">
+      <div class="ornament">✦ ✧ ✦</div>
+      <h2 class="section-title" style="margin-top:24px;margin-bottom:16px">Begin Your Study</h2>
+      <p class="section-intro" style="margin:0 auto 40px;text-align:center">
+        Enter the archive and explore all three Books of Enoch — with every tool available to read, study, mark, and understand.
+      </p>
+      <a href="enoch_dashboard.html" class="btn-primary" style="font-size:13px;padding:18px 48px">Enter the Archive ⟶</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-emblem">✦ ✧ ✦</div>
+    <div class="footer-text">
+      The Books of Enoch — Sacred Archive<br>
+      1 Enoch · 2 Enoch · 3 Enoch<br>
+      <span style="opacity:0.5">For study, research, and reflection</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+// Stars
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<200;i++){
+    const s=document.createElement('div');
+    s.className='star';
+    const sz=Math.random()*2.2+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*6}s;--dl:${-Math.random()*8}s;--lo:${0.08+Math.random()*0.15};--hi:${0.4+Math.random()*0.5};`;
+    c.appendChild(s);
+  }
+})();
+
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+},{threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
